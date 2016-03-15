@@ -1,0 +1,20 @@
+<div class="wrapper">
+  <h1>Home</h1>
+  {{ page.content }}
+</div>
+
+{% unless settings.frontpage == blank or collections[settings.frontpage].empty? %}
+{% assign collection = collections[settings.frontpage] %}
+<ul class="row">
+{% for product in collection.products %}
+  {% include 'product-grid-item' %}
+{% else %}
+<li>
+  <p>
+    You have no products in your {{ collections[settings.frontpage].title }} collection. 
+    <a href="http://www.shopify.com/admin/collections">Add some.</a>
+  <p>
+</li>
+{% endfor %}
+</ul>
+{% endunless %}
